@@ -11,7 +11,7 @@ train_dataloader:
   type: DataLoader
   dataset:
     type: CocoDetection
-    img_folder: /kaggle/input/mot-17-20-coco/mot-17-20-det-coco/images/train
+    img_folder: /kaggle/input/mot-17-20-coco/mot-17-20-det-coco
     ann_file: /kaggle/input/mot-17-20-coco/mot-17-20-det-coco/annotations/instances_train.json
     return_masks: False
     transforms:
@@ -28,7 +28,7 @@ val_dataloader:
   type: DataLoader
   dataset:
     type: CocoDetection
-    img_folder: /kaggle/input/mot-17-20-coco/mot-17-20-det-coco/images/val
+    img_folder: /kaggle/input/mot-17-20-coco/mot-17-20-det-coco
     ann_file: /kaggle/input/mot-17-20-coco/mot-17-20-det-coco/annotations/instances_val.json
     return_masks: False
     transforms:
