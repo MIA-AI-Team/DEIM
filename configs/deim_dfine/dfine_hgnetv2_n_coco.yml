@@ -73,7 +73,7 @@ lr_warmup_scheduler:
 # Increase to search for the optimal ema
 epoches: 160 # 148 + 4n
 train_dataloader:
-  total_batch_size: 32 #128
+  total_batch_size: 16 #128
   dataset:
     transforms:
       policy:
@@ -84,4 +84,4 @@ train_dataloader:
     base_size_repeat: ~
 
 val_dataloader:
-  total_batch_size: 32 #256
+  total_batch_size: 16 #256

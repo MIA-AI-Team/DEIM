@@ -38,4 +38,4 @@ train_dataloader:
     stop_epoch: 50
 
 val_dataloader:
-  total_batch_size: 6
+  total_batch_size: 4
