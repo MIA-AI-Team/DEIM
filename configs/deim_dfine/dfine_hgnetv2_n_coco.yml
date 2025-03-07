@@ -66,10 +66,10 @@ optimizer:
 
 ema:  # added EMA settings
     decay: 0.9998  # adjusted by 1 - (1 - decay) * 2
-    warmups: 4000 # 500  # halved
+    warmups: 500 # 500  # halved
 
 lr_warmup_scheduler:
-    warmup_duration: 2000 # 250  # halved
+    warmup_duration: 250 # 250  # halved
 # Increase to search for the optimal ema
 epoches: 160 # 148 + 4n
 train_dataloader:
