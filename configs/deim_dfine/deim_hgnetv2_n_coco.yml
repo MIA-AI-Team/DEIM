@@ -39,13 +39,13 @@ train_dataloader:
         # Original setting - caused OOM
         # epoch: [4, 78, 148]   # list 
         # New setting - gradual introduction
-        epoch: [4, 78, 148]   # Keep original, our code will handle it
+        epoch: [1, 78, 148]   # Keep original, our code will handle it
 
   collate_fn:
     # Original setting - caused OOM 
     # mixup_epochs: [4, 78]
     # New setting - gradual introduction
-    mixup_epochs: [4, 78]
+    mixup_epochs: [1, 78]
     gradual_mixup: true   # Enable gradual mixup introduction
     stop_epoch: 148
     base_size_repeat: ~
