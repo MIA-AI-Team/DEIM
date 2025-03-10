@@ -31,7 +31,7 @@ train_dataloader:
   dataset: 
     transforms:
       policy:
-        epoch: [0, 29, 50]   # list 
+        epoch: [4, 29, 50]   # list 
 
   collate_fn:
     # mixup_epochs: [4, 29]

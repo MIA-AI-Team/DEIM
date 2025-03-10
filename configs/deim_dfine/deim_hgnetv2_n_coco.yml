@@ -10,16 +10,16 @@ optimizer:
   params:
     -
       params: '^(?=.*backbone)(?!.*norm|bn).*$'
-      lr: 0.0004
+      lr: 0.0002
     -
       params: '^(?=.*backbone)(?=.*norm|bn).*$'
-      lr: 0.0004
+      lr: 0.0002
       weight_decay: 0.
     -
       params: '^(?=.*(?:encoder|decoder))(?=.*(?:norm|bn|bias)).*$'
       weight_decay: 0.
 
-  lr: 0.0008
+  lr: 0.0004
   betas: [0.9, 0.999]
   weight_decay: 0.0001
 
@@ -36,11 +36,11 @@ train_dataloader:
   dataset: 
     transforms:
       policy:
-        # epoch: [4, 78, 148]   # list 
-        epoch: [100, 105,148]
+        epoch: [4, 78, 148]   # list 
+        # epoch: [100, 105,148]
 
   collate_fn:
     # mixup_epochs: [4, 78]
-    mixup_epochs: [100,105]
+    # mixup_epochs: [100,105]
     stop_epoch: 148
     base_size_repeat: ~
