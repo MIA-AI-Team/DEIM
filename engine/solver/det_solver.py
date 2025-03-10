@@ -61,8 +61,27 @@ class DetSolver(BaseSolver):
         best_stat_print = best_stat.copy()
         start_time = time.time()
         start_epoch = self.last_epoch + 1
+        
+        # Check for potential memory-intensive epochs and warn about them
+        memory_intensive_epochs = []
+        if hasattr(self.train_dataloader.collate_fn, 'mixup_epochs') and len(self.train_dataloader.collate_fn.mixup_epochs) >= 2:
+            first_mixup_epoch = self.train_dataloader.collate_fn.mixup_epochs[0]
+            memory_intensive_epochs.append(first_mixup_epoch)
+            print(f"Note: Memory usage may increase at epoch {first_mixup_epoch} due to mixup activation")
+            
+        # Try to detect transform policy epochs
+        if hasattr(self.train_dataloader.dataset, 'transforms') and hasattr(self.train_dataloader.dataset.transforms, 'policy_epochs'):
+            for policy_epoch in self.train_dataloader.dataset.transforms.policy_epochs:
+                if policy_epoch not in memory_intensive_epochs:
+                    memory_intensive_epochs.append(policy_epoch)
+                    print(f"Note: Memory usage may increase at epoch {policy_epoch} due to transform policy change")
+        
         for epoch in range(start_epoch, args.epoches):
-
+            # Memory management for known memory-intensive epochs
+            if epoch in memory_intensive_epochs:
+                print(f"Epoch {epoch}: Clearing cache to prepare for memory-intensive operations")
+                torch.cuda.empty_cache()
+                
             self.train_dataloader.set_epoch(epoch)
             # self.train_dataloader.dataset.set_epoch(epoch)
             if dist_utils.is_dist_available_and_initialized():
@@ -104,6 +123,9 @@ class DetSolver(BaseSolver):
                 for checkpoint_path in checkpoint_paths:
                     dist_utils.save_on_master(self.state_dict(), checkpoint_path)
 
+            # Free up memory before evaluation
+            torch.cuda.empty_cache()
+            
             module = self.ema.module if self.ema else self.model
             test_stats, coco_evaluator = evaluate(
                 module,
