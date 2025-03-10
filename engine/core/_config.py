@@ -155,11 +155,11 @@ class BaseConfig(object):
         if self._val_dataloader is None and self.val_dataset is not None:
             loader = DataLoader(self.val_dataset,
                                 batch_size=self.val_batch_size,
-                                num_workers=0,
+                                num_workers=self.num_workers,
                                 drop_last=False,
                                 collate_fn=self.collate_fn,
                                 shuffle=self.val_shuffle,
-                                persistent_workers=False)
+                                persistent_workers=True)
             loader.shuffle = self.val_shuffle
             self._val_dataloader = loader
 
