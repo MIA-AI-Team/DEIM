@@ -15,7 +15,8 @@ train_dataloader:
       policy:
         name: stop_epoch
         epoch: 72 # epoch in [71, ~) stop `ops`
-        ops: ['Mosaic', 'RandomPhotometricDistort', 'RandomZoomOut', 'RandomIoUCrop']
+        ops: ['Mosaic']
+        # ops: ['Mosaic', 'RandomPhotometricDistort', 'RandomZoomOut', 'RandomIoUCrop']
 
   collate_fn:
     type: BatchImageCollateFunction
