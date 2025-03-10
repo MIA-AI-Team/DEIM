@@ -16,7 +16,7 @@ train_dataloader:
         - {type: ConvertBoxes, fmt: 'cxcywh', normalize: True}
       policy:
         epoch: [4, 29, 50]   # list 
-        ops: ['RandomZoomOut', 'RandomIoUCrop']
+        ops: ['RandomPhotometricDistort', 'RandomZoomOut', 'RandomIoUCrop']
         # ops: ['Mosaic', 'RandomPhotometricDistort', 'RandomZoomOut', 'RandomIoUCrop']
       mosaic_prob: 0.5
 
