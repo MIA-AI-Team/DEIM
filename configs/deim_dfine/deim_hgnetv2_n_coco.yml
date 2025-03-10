@@ -37,11 +37,10 @@ train_dataloader:
     transforms:
       policy:
         # epoch: [0, 78, 148]   # list 
-        epoch: 1
-        # epoch: [100, 105,148]
+        epoch: 78
 
   collate_fn:
     # mixup_epochs: [4, 78]
-    mixup_epochs: [0,105]
+    mixup_epochs: [161,162]
     stop_epoch: 148
     base_size_repeat: ~
