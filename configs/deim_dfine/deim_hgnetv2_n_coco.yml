@@ -36,8 +36,8 @@ train_dataloader:
   dataset: 
     transforms:
       policy:
-        epoch: [0, 78, 148]   # list 
-        # epoch: 1
+        # epoch: [0, 78, 148]   # list 
+        epoch: 1
         # epoch: [100, 105,148]
 
   collate_fn:
