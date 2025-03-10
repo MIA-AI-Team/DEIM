@@ -103,7 +103,7 @@ class Compose(T.Compose):
                 if type(transform).__name__ in policy_ops and cur_epoch >= policy_epoch:
                     pass
                 else:
-                    print("     ### Transform @{} ###    ".format(type(transform).__name__))
+                    # print("     ### Transform @{} ###    ".format(type(transform).__name__))
                     sample = transform(sample)
 
         return sample
