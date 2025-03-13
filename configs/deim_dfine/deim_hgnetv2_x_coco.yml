@@ -27,14 +27,15 @@ flat_epoch: 29    # 4 + epoch // 2, e.g., 40 = 4 + 72 / 2
 no_aug_epoch: 8
 
 train_dataloader: 
-  total_batch_size: 8 # 32
+  total_batch_size: 4 # 32
   dataset: 
     transforms:
       policy:
-        epoch: [4, 29, 50]   # list 
+        epoch: 4
 
   collate_fn:
     # mixup_epochs: [4, 29]
+    mixup_epochs: [161,162]
     stop_epoch: 50
 
 val_dataloader:
